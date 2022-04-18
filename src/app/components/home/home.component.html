@@ -1,0 +1,33 @@
+<div class="home">
+  <div class="topbar-container">
+    <div class="topbar-logo">KanBan Board</div>
+  </div>
+
+  <div class="board">
+    <div class="board-bar">
+      <p class="board-bar-name">{{ board.name }}</p>
+    </div>
+    <div class="board-wrapper">
+      <div class="board-columns" cdkDropListGroup>
+        <div class="board-column" *ngFor="let column of board.columns">
+          <div class="board-column-title">To Do</div>
+          <div
+            class="board-column-tasks"
+            cdkDropList
+            [cdkDropListData]="column.tasks"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <button
+              mat-button
+              class="task"
+              *ngFor="let task of column.tasks"
+              cdkDrag
+            >
+              {{ task }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
